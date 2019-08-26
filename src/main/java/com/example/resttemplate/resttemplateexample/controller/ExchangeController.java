@@ -2,6 +2,7 @@ package com.example.resttemplate.resttemplateexample.controller;
 
 import com.example.resttemplate.resttemplateexample.service.RestService;
 import com.example.resttemplate.resttemplateexample.dto.ExchangeDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,12 @@ import java.util.List;
 @RequestMapping(value = "exchange")
 public class ExchangeController {
 
-    private RestService restService=new RestService();
+    private final RestService restService;
+
+    @Autowired
+    public ExchangeController(RestService restService) {
+        this.restService = restService;
+    }
 
     @GetMapping("/getCurrencies")
     public @ResponseBody ResponseEntity<List<ExchangeDTO>> getCurrencies(){

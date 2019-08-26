@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Ramazan Karagöz
  * @date 8/26/2019
  */
-
+@Service
 public class RestService {
 
     private final String CURRENCY_URL="https://api.canlidoviz.com/items/latest-data?marketId=0&type=CURRENCY";
