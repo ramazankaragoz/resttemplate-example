@@ -7,9 +7,11 @@ import java.io.Serializable;
 public class ServiceError implements Serializable {
 
     private HttpStatus status;
+    private Integer statusCode;
     private String errMessage;
     private String errCode;
     private String debugMessage;
+
 
     public ServiceError(){
 
@@ -61,5 +63,13 @@ public class ServiceError implements Serializable {
 
     public void setDebugMessage(String debugMessage) {
         this.debugMessage = debugMessage;
+    }
+
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 }

@@ -14,15 +14,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestController
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
+
+
     private final int HTTP_STATUS_VALUE=500;
 
-    @ExceptionHandler({AlreadyExistsException.class,DataNotFoundException.class})
+    @ExceptionHandler({
+            AlreadyExistsException.class
+            ,DataNotFoundException.class})
     public ResponseEntity<Object> handleException(BaseServiceException ex){
 
         ServiceError serviceError=new ServiceError();
         serviceError.setErrCode(ex.getBaseExceptionEnum().getCode());
         serviceError.setErrMessage(ex.getMessage());
         serviceError.setStatus(HttpStatus.valueOf(HTTP_STATUS_VALUE));
+        serviceError.setStatusCode(HTTP_STATUS_VALUE);
         ex.printStackTrace();
         return new ResponseEntity<>(serviceError, serviceError.getStatus());
 
