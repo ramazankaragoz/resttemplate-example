@@ -1,6 +1,6 @@
 package com.example.resttemplate.resttemplateexample.entity;
 
-/**
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedBy;
@@ -70,7 +70,7 @@ public abstract class BaseEntity {
         return updateDate;
     }
 
-    @PreUpdate
+
     public void setUpdateDate(Instant updateDate) {
         this.updateDate = updateDate;
     }
@@ -106,5 +106,5 @@ public abstract class BaseEntity {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
 }
- */
