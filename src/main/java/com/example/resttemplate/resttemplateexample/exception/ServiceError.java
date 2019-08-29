@@ -72,4 +72,15 @@ public class ServiceError implements Serializable {
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
+
+    @Override
+    public String toString() {
+        return "ServiceError{" +
+                "status=" + status +
+                ", statusCode=" + statusCode +
+                ", errMessage='" + errMessage + '\'' +
+                ", errCode='" + errCode + '\'' +
+                ", debugMessage='" + debugMessage + '\'' +
+                '}';
+    }
 }

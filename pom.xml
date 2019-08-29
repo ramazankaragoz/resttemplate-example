@@ -22,6 +22,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,6 +49,36 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>-->
+
+        <!--It is log4j2 binding to slf4j so that we can use slf4j API and log4j2 as logging implementation-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+        </dependency>
+        <!--It provides the API which can be used directly in applications to log messages
+        (as opposed to log4j, log4j2 separates logging API from it's implementations)
+        .This dependency also provides the adapter components required to hook up log4j2 implementations.-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <!--This is Apache Log4j2 Implementation.-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <!--This dependency bridges Apache Commons Logging (JCL) to SLF4J layer.
+         This is needed for Spring framework internal logging code which uses JCL API.
+         Per our configuration logs sent to JCL will be redirected to SLF4J which will ultimately use log4j2 to output the logs.-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <!--This dependency bridges Java Util Logging (JUL) to SLF4J. So all logs sent from JUL API will redirect to SLF4J and then log4j2.-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
 
     </dependencies>
 
