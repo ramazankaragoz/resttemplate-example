@@ -14,7 +14,10 @@ import javax.persistence.Table;
 public class User extends BaseEntity {
 
     @Column(name = "username",nullable = false)
-    private Long userName;
+    private Long username;
+
+    @Column(name = "password",nullable = false)
+    private String password;
 
     @Column(name = "first_name",nullable = false)
     private String firstName;
@@ -22,12 +25,30 @@ public class User extends BaseEntity {
     @Column(name = "last_name",nullable = false)
     private String lastName;
 
-    public Long getUserName() {
-        return userName;
+    public User() {
     }
 
-    public void setUserName(Long userName) {
-        this.userName = userName;
+    public User(Long username, String password, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Long getUsername() {
+        return username;
+    }
+
+    public void setUsername(Long username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
