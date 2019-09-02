@@ -1,6 +1,6 @@
 package com.example.resttemplate.resttemplateexample.controller;
 
-import com.example.resttemplate.resttemplateexample.entity.User;
+import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import com.example.resttemplate.resttemplateexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,15 +49,15 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public @ResponseBody ResponseEntity<User> save(@RequestBody User user){
+    public @ResponseBody ResponseEntity<ApplicationUser> save(@RequestBody ApplicationUser user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setCreatedBy("developer");
-        return new ResponseEntity<User>(userService.save(user), HttpStatus.OK);
+        return new ResponseEntity<ApplicationUser>(userService.save(user), HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public @ResponseBody ResponseEntity<User> update(@RequestBody User user){
+    public @ResponseBody ResponseEntity<ApplicationUser> update(@RequestBody ApplicationUser user){
         user.setCreatedBy("sadsa");
-        return new ResponseEntity<User>(userService.update(user), HttpStatus.OK);
+        return new ResponseEntity<ApplicationUser>(userService.update(user), HttpStatus.OK);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.resttemplate.resttemplateexample.service;
 
 import com.example.resttemplate.resttemplateexample.dao.UserDAO;
-import com.example.resttemplate.resttemplateexample.entity.User;
+import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user=userDAO.findByUsername(Long.valueOf(s));
+        ApplicationUser user=userDAO.findByUsername(Long.valueOf(s));
 
         if (user==null){
             throw new UsernameNotFoundException(s+" berlitilen kullanı bulunamadı!!");

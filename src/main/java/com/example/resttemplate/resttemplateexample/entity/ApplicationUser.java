@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usr_user")
-public class User extends BaseEntity {
+public class ApplicationUser extends BaseEntity {
 
     @Column(name = "username",nullable = false)
     private Long username;
@@ -25,10 +25,10 @@ public class User extends BaseEntity {
     @Column(name = "last_name",nullable = false)
     private String lastName;
 
-    public User() {
+    public ApplicationUser() {
     }
 
-    public User(Long username, String password, String firstName, String lastName) {
+    public ApplicationUser(Long username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;

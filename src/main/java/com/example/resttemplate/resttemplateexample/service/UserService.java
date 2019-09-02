@@ -1,7 +1,7 @@
 package com.example.resttemplate.resttemplateexample.service;
 
 import com.example.resttemplate.resttemplateexample.dao.UserDAO;
-import com.example.resttemplate.resttemplateexample.entity.User;
+import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,12 +22,12 @@ public class UserService {
     }
 
     @Transactional
-    public User save(User user){
+    public ApplicationUser save(ApplicationUser user){
         return userDAO.save(user);
     }
 
     @Transactional
-    public User update(User user){
+    public ApplicationUser update(ApplicationUser user){
         return userDAO.save(user);
     }
 }

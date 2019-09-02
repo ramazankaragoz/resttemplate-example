@@ -1,6 +1,6 @@
 package com.example.resttemplate.resttemplateexample.dao;
 
-import com.example.resttemplate.resttemplateexample.entity.User;
+import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface UserDAO extends JpaRepository<User,Long> {
+public interface UserDAO extends JpaRepository<ApplicationUser,Long> {
 
-    User findByUsername(Long username);
+    ApplicationUser findByUsername(Long username);
 }

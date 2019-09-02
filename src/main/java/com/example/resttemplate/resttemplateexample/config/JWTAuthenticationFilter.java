@@ -1,6 +1,6 @@
 package com.example.resttemplate.resttemplateexample.config;
 
-import com.example.resttemplate.resttemplateexample.entity.User;
+import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -39,7 +39,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throws AuthenticationException {
 
         try {
-            User user=new ObjectMapper().readValue(request.getInputStream(),User.class);
+            ApplicationUser user=new ObjectMapper().readValue(request.getInputStream(), ApplicationUser.class);
 
             return  authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),new ArrayList<>())
