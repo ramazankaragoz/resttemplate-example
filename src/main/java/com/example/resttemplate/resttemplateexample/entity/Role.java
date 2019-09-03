@@ -1,9 +1,6 @@
 package com.example.resttemplate.resttemplateexample.entity;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
@@ -11,7 +8,9 @@ import java.util.Collection;
  * @date 9/2/2019
  */
 
-public class Role {
+@Entity
+@Table(name = "role")
+public class Role extends BaseEntity{
 
     @Column(name = "role_name")
     private String roleName;
