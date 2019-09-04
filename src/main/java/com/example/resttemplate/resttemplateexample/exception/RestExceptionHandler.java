@@ -51,6 +51,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
+        Locale.setDefault(new Locale("en"));
+        LocaleContextHolder.setDefaultLocale(new Locale("en"));
         Locale localeContext = LocaleContextHolder.getLocale();
         Locale locale=request.getLocale();
         List<ServiceError> serviceErrors=new ArrayList<>();

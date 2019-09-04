@@ -1,7 +1,5 @@
 package com.example.resttemplate.resttemplateexample.dto;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,8 +10,8 @@ import javax.validation.constraints.Size;
 
 public class PersonDTO extends BaseDTO{
 
-    @NotNull(message = "Personel adı boş olamaz..")
-    @Size(min = 2,max = 15)
+    @NotNull(message = "{person.firstname.notnull}")
+    @Size(min = 2,max = 15,message = "{person.firstname.size}")
     private String firstName;
     @NotNull
     @Size(min = 3,max = 18)
