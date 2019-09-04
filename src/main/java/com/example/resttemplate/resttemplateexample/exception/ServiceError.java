@@ -11,7 +11,8 @@ public class ServiceError implements Serializable {
     private String errMessage;
     private String errCode;
     private String debugMessage;
-
+    private String validatedField;
+    private String language;
 
     public ServiceError(){
 
@@ -73,6 +74,22 @@ public class ServiceError implements Serializable {
         this.statusCode = statusCode;
     }
 
+    public String getValidatedField() {
+        return validatedField;
+    }
+
+    public void setValidatedField(String validatedField) {
+        this.validatedField = validatedField;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     @Override
     public String toString() {
         return "ServiceError{" +
@@ -81,6 +98,8 @@ public class ServiceError implements Serializable {
                 ", errMessage='" + errMessage + '\'' +
                 ", errCode='" + errCode + '\'' +
                 ", debugMessage='" + debugMessage + '\'' +
+                ", validatedField='" + validatedField + '\'' +
+                ", language='" + language + '\'' +
                 '}';
     }
 }
