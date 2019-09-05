@@ -1,5 +1,7 @@
 package com.example.resttemplate.resttemplateexample.dto;
 
+import com.example.resttemplate.resttemplateexample.config.IpAddress;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,13 +20,17 @@ public class PersonDTO extends BaseDTO{
     private String lastName;
     private Integer age;
 
+    @IpAddress(message = "{person.ipaddress}",label = "Ip Adresi")
+    private String ipAddress;
+
     public PersonDTO() {
     }
 
-    public PersonDTO(String firstName, String lastName, Integer age) {
+    public PersonDTO(String firstName, String lastName, Integer age,String ipAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.ipAddress=ipAddress;
     }
 
     public String getFirstName() {
@@ -49,5 +55,13 @@ public class PersonDTO extends BaseDTO{
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 }

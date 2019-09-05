@@ -12,7 +12,7 @@ import java.util.Locale;
 public class RestTemplateExampleApplication {
 
     public static void main(String[] args) {
-        Locale.setDefault(new Locale("tr_TR"));
+        //Locale.setDefault(new Locale("tr_TR"));
         SpringApplication.run(RestTemplateExampleApplication.class, args);
     }
 
