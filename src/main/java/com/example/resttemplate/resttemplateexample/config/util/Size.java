@@ -17,14 +17,18 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = NotNullValidator.class)
-public @interface NotNull {
+@Constraint(validatedBy = SizeValidator.class)
+public @interface Size {
 
-    String message() default "";
+    String message() default "{javax.validation.constraints.Size.message}";
 
     String label() default "";
 
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };
+
+    int min() default 0;
+
+    int max() default Integer.MAX_VALUE;
 }

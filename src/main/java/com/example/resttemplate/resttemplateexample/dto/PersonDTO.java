@@ -2,7 +2,6 @@ package com.example.resttemplate.resttemplateexample.dto;
 
 import com.example.resttemplate.resttemplateexample.config.util.*;
 
-import javax.validation.constraints.Size;
 
 /**
  * @author Ramazan Karagöz
