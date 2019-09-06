@@ -14,11 +14,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -65,6 +63,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             serviceError.setErrCode(fieldError.getCode());
             serviceError.setErrMessage(fieldError.getDefaultMessage());
             serviceError.setValidatedField(fieldError.getField());
+            serviceError.setLabel(fieldError.getArguments()[1].toString());
             serviceError.setLanguage(locale.getLanguage()+" Context lang:  "+localeContext.getLanguage());
             serviceErrors.add(serviceError);
             //System.out.println(fieldError.getField()+" "+fieldError.getDefaultMessage()+" "+fieldError.getCode());

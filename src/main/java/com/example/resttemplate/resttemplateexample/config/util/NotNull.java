@@ -1,24 +1,25 @@
-package com.example.resttemplate.resttemplateexample.config;
+package com.example.resttemplate.resttemplateexample.config.util;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-
 import java.lang.annotation.Documented;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @author Ramazan Karagöz
- * @date 9/5/2019
+ * @date 9/6/2019
  */
-@Target({ FIELD })
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = IpAddressValidator.class)
 @Documented
-public @interface IpAddress {
+@Constraint(validatedBy = NotNullValidator.class)
+public @interface NotNull {
 
     String message() default "";
 

@@ -1,8 +1,7 @@
 package com.example.resttemplate.resttemplateexample.dto;
 
-import com.example.resttemplate.resttemplateexample.config.IpAddress;
+import com.example.resttemplate.resttemplateexample.config.util.*;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,7 +11,7 @@ import javax.validation.constraints.Size;
 
 public class PersonDTO extends BaseDTO{
 
-    @NotNull(message = "{person.firstname.notnull}")
+    @NotNull(message = "{person.firstname.notnull}",label = "ADI")
     @Size(min = 2,max = 15,message = "{person.firstname.size}")
     private String firstName;
     @NotNull
@@ -20,8 +19,17 @@ public class PersonDTO extends BaseDTO{
     private String lastName;
     private Integer age;
 
+    @TcNo(message = "{person.tcno.valid}",label = "Kullanıcı Adı")
+    private Long tcNo;
+
     @IpAddress(message = "{person.ipaddress}",label = "Ip Adresi")
     private String ipAddress;
+
+    @EmailAddress(message = "{person.email.valid}",label = "Eposta Adresi")
+    private String emailAddress;
+
+    @PhoneNumber(message = "{person.phone.valid}",label = "Telefon Numarası")
+    private String phoneNumber;
 
     public PersonDTO() {
     }
@@ -63,5 +71,29 @@ public class PersonDTO extends BaseDTO{
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public Long getTcNo() {
+        return tcNo;
+    }
+
+    public void setTcNo(Long tcNo) {
+        this.tcNo = tcNo;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

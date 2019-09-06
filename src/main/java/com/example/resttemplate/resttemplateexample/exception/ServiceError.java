@@ -13,6 +13,7 @@ public class ServiceError implements Serializable {
     private String debugMessage;
     private String validatedField;
     private String language;
+    private String label;
 
     public ServiceError(){
 
@@ -90,6 +91,14 @@ public class ServiceError implements Serializable {
         this.language = language;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     @Override
     public String toString() {
         return "ServiceError{" +
@@ -100,6 +109,7 @@ public class ServiceError implements Serializable {
                 ", debugMessage='" + debugMessage + '\'' +
                 ", validatedField='" + validatedField + '\'' +
                 ", language='" + language + '\'' +
+                ", label='" + label + '\'' +
                 '}';
     }
 }
