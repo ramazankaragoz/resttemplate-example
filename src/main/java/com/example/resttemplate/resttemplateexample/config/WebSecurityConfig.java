@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //Ardindan az once yarattigimiz iki Filter’i ekleyip, session olusturmayi kaldiriyoruz. Buni JWT ile saglayacagiz.
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+        http.cors().and().csrf().disable().headers().frameOptions().disable().and().authorizeRequests()
                 //.antMatchers(HttpMethod.POST, "/user/save").permitAll()
                 .antMatchers( "/**").permitAll()
                 .anyRequest().authenticated()

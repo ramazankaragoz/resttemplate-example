@@ -70,9 +70,9 @@ public abstract class BaseEntity {
         return updateDate;
     }
 
-
-    public void setUpdateDate(Instant updateDate) {
-        this.updateDate = updateDate;
+    @PreUpdate
+    public void setUpdateDate() {
+        this.updateDate = Instant.now();
     }
 
     public Integer getDurum() {

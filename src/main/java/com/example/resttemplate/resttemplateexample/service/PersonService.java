@@ -48,8 +48,6 @@ public class PersonService {
         person.setAge(personDTO.getAge());
         person.setFirstName(personDTO.getFirstName());
         person.setLastName(personDTO.getLastName());
-        person.setCreateDate(personDTO.getCreateDate());
-        person.setUpdateDate(personDTO.getUpdateDate());
         person.setDurum(personDTO.getDurum());
         person.setCreatedBy(personDTO.getCreatedBy());
         person.setLastModifiedBy(personDTO.getLastModifiedBy());

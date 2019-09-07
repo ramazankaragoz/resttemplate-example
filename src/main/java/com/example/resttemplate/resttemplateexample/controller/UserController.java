@@ -57,7 +57,6 @@ public class UserController {
 
     @PutMapping("/update")
     public @ResponseBody ResponseEntity<ApplicationUser> update(@RequestBody ApplicationUser user){
-        user.setCreatedBy("sadsa");
         return new ResponseEntity<ApplicationUser>(userService.update(user), HttpStatus.OK);
     }
 }
