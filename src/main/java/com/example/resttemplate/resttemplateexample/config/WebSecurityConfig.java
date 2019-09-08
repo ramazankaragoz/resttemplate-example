@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -13,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -32,15 +35,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //Ardindan az once yarattigimiz iki Filter’i ekleyip, session olusturmayi kaldiriyoruz. Buni JWT ile saglayacagiz.
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().headers().frameOptions().disable().and().authorizeRequests()
-                //.antMatchers(HttpMethod.POST, "/user/save").permitAll()
+        http.cors().and()
+                .csrf().disable()
+                .headers().frameOptions().disable()
+                .and().authorizeRequests()
+                //.antMatchers(HttpMethod.PUT, "/user/update").permitAll()
+                //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers( "/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().httpBasic();
     }
 
     @Override
@@ -53,8 +61,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // simdilik herhangi kaynaktan gelen requestlere izin verdik.
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        /**final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;*/
+
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.addAllowedHeader("*");
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addAllowedMethod("*");
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS);
+        web.ignoring().antMatchers("/static/**","/resources/**","/css/**","/images/**","/actuator/**");
     }
 }

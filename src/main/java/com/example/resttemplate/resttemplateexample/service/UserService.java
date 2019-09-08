@@ -30,4 +30,8 @@ public class UserService {
     public ApplicationUser update(ApplicationUser user){
         return userDAO.save(user);
     }
+
+    public void delete(ApplicationUser user){
+        userDAO.delete(user);
+    }
 }

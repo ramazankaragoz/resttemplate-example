@@ -55,8 +55,15 @@ public class UserController {
         return new ResponseEntity<ApplicationUser>(userService.save(user), HttpStatus.OK);
     }
 
-    @PutMapping("/update")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
     public @ResponseBody ResponseEntity<ApplicationUser> update(@RequestBody ApplicationUser user){
         return new ResponseEntity<ApplicationUser>(userService.update(user), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable(value = "id") Long id){
+        ApplicationUser applicationUser=new ApplicationUser();
+        applicationUser.setId(id);
+        userService.delete(applicationUser);
     }
 }
