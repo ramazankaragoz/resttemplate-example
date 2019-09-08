@@ -51,7 +51,6 @@ public class UserController {
     @PostMapping("/save")
     public @ResponseBody ResponseEntity<ApplicationUser> save(@RequestBody ApplicationUser user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setCreatedBy("developer");
         return new ResponseEntity<ApplicationUser>(userService.save(user), HttpStatus.OK);
     }
 
