@@ -30,10 +30,10 @@ public class ApplicationUser extends BaseEntity {
     @Column(name = "token_expired")
     private Boolean tokenExpired;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id",nullable = false))
     private Collection<Role> roles;
 
     public ApplicationUser() {

@@ -1,6 +1,7 @@
 package com.example.resttemplate.resttemplateexample.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -15,21 +16,17 @@ public class Role extends BaseEntity{
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
-    private Collection<ApplicationUser> applicationUsers;
-
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(name = "privileges_roles",
             joinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "privilege_id",referencedColumnName = "id"))
-    private Collection<Privilege> privileges;
+    private Collection<Privilege> privileges=new ArrayList<>();
 
     public Role() {
     }
 
-    public Role(String roleName, Collection<ApplicationUser> applicationUsers, Collection<Privilege> privileges) {
+    public Role(String roleName,Collection<Privilege> privileges) {
         this.roleName = roleName;
-        this.applicationUsers = applicationUsers;
         this.privileges = privileges;
     }
 
@@ -41,13 +38,6 @@ public class Role extends BaseEntity{
         this.roleName = roleName;
     }
 
-    public Collection<ApplicationUser> getApplicationUsers() {
-        return applicationUsers;
-    }
-
-    public void setApplicationUsers(Collection<ApplicationUser> applicationUsers) {
-        this.applicationUsers = applicationUsers;
-    }
 
     public Collection<Privilege> getPrivileges() {
         return privileges;

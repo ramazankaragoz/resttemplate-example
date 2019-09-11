@@ -5,8 +5,11 @@ import com.example.resttemplate.resttemplateexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Ramazan Karagöz
@@ -54,6 +57,7 @@ public class UserController {
         return new ResponseEntity<ApplicationUser>(userService.save(user), HttpStatus.OK);
     }
 
+
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
     public @ResponseBody ResponseEntity<ApplicationUser> update(@RequestBody ApplicationUser user){
         return new ResponseEntity<ApplicationUser>(userService.update(user), HttpStatus.OK);
@@ -64,5 +68,11 @@ public class UserController {
         ApplicationUser applicationUser=new ApplicationUser();
         applicationUser.setId(id);
         userService.delete(applicationUser);
+    }
+
+    @PreAuthorize(value = "hasRole('ROLE_USER')")
+    @GetMapping("/findAll")
+    public ResponseEntity<List<ApplicationUser>> findAll(){
+        return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
     }
 }

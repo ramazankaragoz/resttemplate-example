@@ -17,15 +17,13 @@ public class Privilege extends BaseEntity {
     @Column(name = "privilege_name")
     private String privilegeName;
 
-    @ManyToMany(mappedBy = "privileges")
-    Collection<Role> roles;
 
     public Privilege() {
     }
 
-    public Privilege(String privilegeName, Collection<Role> roles) {
+    public Privilege(String privilegeName) {
         this.privilegeName = privilegeName;
-        this.roles = roles;
+
     }
 
     public String getPrivilegeName() {
@@ -36,11 +34,4 @@ public class Privilege extends BaseEntity {
         this.privilegeName = privilegeName;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
 }

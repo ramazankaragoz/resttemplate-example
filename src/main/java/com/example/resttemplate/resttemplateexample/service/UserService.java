@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author Ramazan Karagöz
  * @date 8/29/2019
@@ -31,7 +33,13 @@ public class UserService {
         return userDAO.save(user);
     }
 
+    @Transactional
     public void delete(ApplicationUser user){
         userDAO.delete(user);
+    }
+
+    @Transactional
+    public List<ApplicationUser> findAll(){
+        return userDAO.findAll();
     }
 }

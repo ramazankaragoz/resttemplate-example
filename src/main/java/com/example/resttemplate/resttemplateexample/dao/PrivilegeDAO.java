@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PrivilegeDAO extends JpaRepository<Privilege,Long> {
+
+    Privilege findByPrivilegeName(String privilegeName);
 }
