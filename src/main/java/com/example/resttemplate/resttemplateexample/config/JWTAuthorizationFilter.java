@@ -1,10 +1,14 @@
 package com.example.resttemplate.resttemplateexample.config;
 
+import com.example.resttemplate.resttemplateexample.service.UserDetailsServiceImpl;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.example.resttemplate.resttemplateexample.config.JWTSecurityConstant.TOKEN_PREFIX;
+
 
 
 //Authenticated kullanıcıların yeni requstlerindeki JWT’leri validate etmek için Authorization Filter
@@ -56,7 +61,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                return new UsernamePasswordAuthenticationToken(user, null, UserDetailsServiceImpl.roleList);
             }
             return null;
         }

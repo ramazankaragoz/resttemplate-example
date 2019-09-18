@@ -70,7 +70,7 @@ public class UserController {
         userService.delete(applicationUser);
     }
 
-    @PreAuthorize(value = "hasRole('ROLE_USER')")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
     @GetMapping("/findAll")
     public ResponseEntity<List<ApplicationUser>> findAll(){
         return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
