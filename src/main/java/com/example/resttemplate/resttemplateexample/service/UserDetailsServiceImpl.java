@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserDAO userDAO;
     private final RoleDAO roleDAO;
-    public static Collection<? extends GrantedAuthority> roleList;
+    public static Collection<? extends GrantedAuthority> grantedAuthorities;
 
     @Autowired
     public UserDetailsServiceImpl(UserDAO userDAO, RoleDAO roleDAO) {
@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(s+" berlitilen kullanıcı bulunamadı!!");
         }
 
-        roleList=getAuthorities(user.getRoles());
+        grantedAuthorities=getAuthorities(user.getRoles());
 
         return new org.springframework.security.core.userdetails.User(user.getUsername().toString(),user.getPassword(), user.getEnabled(),
                 true,

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static com.example.resttemplate.resttemplateexample.config.JWTSecurityConstant.TOKEN_PREFIX;
 
@@ -24,6 +26,8 @@ import static com.example.resttemplate.resttemplateexample.config.JWTSecurityCon
 //Authenticated kullanıcıların yeni requstlerindeki JWT’leri validate etmek için Authorization Filter
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+
+    private Collection<? extends GrantedAuthority> grantedAuthorities;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -61,7 +65,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, UserDetailsServiceImpl.roleList);
+                //Kullanıcının yetkilerini token içerisine veriyoruz
+                if ((grantedAuthorities=UserDetailsServiceImpl.grantedAuthorities)==null){
+                    grantedAuthorities=new ArrayList<>();
+                }
+                return new UsernamePasswordAuthenticationToken(user, null, grantedAuthorities);
             }
             return null;
         }

@@ -58,11 +58,13 @@ public class UserController {
     }
 
 
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE')")
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
     public @ResponseBody ResponseEntity<ApplicationUser> update(@RequestBody ApplicationUser user){
         return new ResponseEntity<ApplicationUser>(userService.update(user), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE')")
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable(value = "id") Long id){
         ApplicationUser applicationUser=new ApplicationUser();
@@ -70,9 +72,11 @@ public class UserController {
         userService.delete(applicationUser);
     }
 
+    //@PreAuthorize("hasAuthority('WRITE_PRIVILEGE')")
     @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
     @GetMapping("/findAll")
     public ResponseEntity<List<ApplicationUser>> findAll(){
+        userService.getPreAuthorities().stream().forEach(System.out::println);
         return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
     }
 }

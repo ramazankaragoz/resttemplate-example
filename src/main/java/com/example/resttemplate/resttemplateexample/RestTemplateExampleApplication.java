@@ -1,13 +1,11 @@
 package com.example.resttemplate.resttemplateexample;
 
+import com.example.resttemplate.resttemplateexample.config.PreAuthorizeValueProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.Locale;
 
 @SpringBootApplication//(exclude = { SecurityAutoConfiguration.class })
 public class RestTemplateExampleApplication {
@@ -15,6 +13,9 @@ public class RestTemplateExampleApplication {
     public static void main(String[] args) {
         //Locale.setDefault(new Locale("tr_TR"));
         SpringApplication.run(RestTemplateExampleApplication.class, args);
+
+        PreAuthorizeValueProvider.getPreAuthorizeAnnotatedValues();
+
     }
 
 
@@ -22,5 +23,6 @@ public class RestTemplateExampleApplication {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
 }
