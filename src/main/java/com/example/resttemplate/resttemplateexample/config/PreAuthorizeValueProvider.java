@@ -42,12 +42,17 @@ public class PreAuthorizeValueProvider {
         return values;
     }
 
+    /**
+     * Method üzerinde @PreAuthorize annotation ile işaretlenmiş methodları bularak annotation değerlerini getirir.
+     * @param methods
+     * @return
+     */
     private static Set<String> getPreAuthorizeAnnotatedMethodValues(List<Method> methods) {
 
         if (methods != null && !methods.isEmpty()) {
             for (Method method : methods) {
                 if (method.getAnnotation(PreAuthorize.class) != null && method.getAnnotation(PreAuthorize.class).value() != null) {
-                    values=findFilteredAllValue(method.getAnnotation(PreAuthorize.class).value());
+                    values=modifyValue(method.getAnnotation(PreAuthorize.class).value());
                 }
             }
         }
@@ -55,7 +60,12 @@ public class PreAuthorizeValueProvider {
         return values;
     }
 
-    private static Set<String> findFilteredAllValue(String value) {
+    /**
+     * Parametredeki value değerini belirli pattern kullanarak düzenler ve values listesine ekler.
+     * @param value
+     * @return values
+     */
+    private static Set<String> modifyValue(String value) {
 
         if (value.contains(HAS_ANY_AUTHORITY_CONTAINS_VALUE)) {
             List<String> hasAnyAuthorityValues = Arrays.asList(value.trim().split(HAS_ANY_AUTHORITY_VALUE_PATTERN));
