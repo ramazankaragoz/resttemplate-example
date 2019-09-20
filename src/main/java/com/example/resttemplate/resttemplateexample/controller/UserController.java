@@ -64,7 +64,7 @@ public class UserController {
         return new ResponseEntity<ApplicationUser>(userService.update(user), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE')")
+    @PreAuthorize("hasAnyAuthority('DELETE_PRIVILEGE','TEST_PRIVILEGE','TEST1_PRIVILEGE')")
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable(value = "id") Long id){
         ApplicationUser applicationUser=new ApplicationUser();

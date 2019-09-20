@@ -14,7 +14,7 @@ public class RestTemplateExampleApplication {
         //Locale.setDefault(new Locale("tr_TR"));
         SpringApplication.run(RestTemplateExampleApplication.class, args);
 
-        PreAuthorizeValueProvider.getPreAuthorizeAnnotatedValues();
+        PreAuthorizeValueProvider.getPreAuthorizeAnnotatedValues().stream().forEach(System.out::println);
 
     }
 
