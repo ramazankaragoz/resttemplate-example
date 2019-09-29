@@ -4,12 +4,10 @@ import com.example.resttemplate.resttemplateexample.dao.UserDAO;
 import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.Permission;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,13 +18,15 @@ import java.util.List;
  */
 
 @Service
-public class UserService {
+public class UserService implements IUserService{
 
     private final UserDAO userDAO;
+    private final IUserServiceProxy iUserServiceProxy;
 
     @Autowired
-    public UserService(UserDAO userDAO) {
+    public UserService(UserDAO userDAO, IUserServiceProxy iUserServiceProxy) {
         this.userDAO = userDAO;
+        this.iUserServiceProxy = iUserServiceProxy;
     }
 
     @Transactional
@@ -60,5 +60,9 @@ public class UserService {
         }
 
         return authoritiyNames;
+    }
+
+    public void proxyProcess(){
+        iUserServiceProxy.process();
     }
 }

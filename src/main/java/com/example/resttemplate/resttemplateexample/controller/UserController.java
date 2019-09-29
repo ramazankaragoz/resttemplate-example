@@ -79,4 +79,11 @@ public class UserController {
         userService.getPreAuthorities().stream().forEach(System.out::println);
         return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
     }
+
+    @GetMapping("/findAllProxyService")
+    public ResponseEntity<Void> findAllProxy(){
+        userService.proxyProcess();
+
+        return new ResponseEntity(Void.TYPE,HttpStatus.OK);
+    }
 }

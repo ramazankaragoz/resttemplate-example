@@ -1,6 +1,7 @@
 package com.example.resttemplate.resttemplateexample;
 
 import com.example.resttemplate.resttemplateexample.config.PreAuthorizeValueProvider;
+import com.example.resttemplate.resttemplateexample.service.IUserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
