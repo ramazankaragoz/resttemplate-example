@@ -67,7 +67,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
         applicationUser.setFirstName("Ramazan");
         applicationUser.setLastName("Karagöz");
-        applicationUser.setUsername(40516901118L);
+        applicationUser.setUsername(85244056914L);
         applicationUser.setPassword(passwordEncoder.encode("123123"));
         applicationUser.setEnabled(true);
         applicationUser.setRoles(Arrays.asList(adminRole));

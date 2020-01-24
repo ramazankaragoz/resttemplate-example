@@ -24,7 +24,7 @@ public class UserController {
      * POST
      * http://localhost:9090/rest-service/user/save
      *{
-     *   "username":"40516901118",
+     *   "username":"85244056914",
      *   "password":"123123",
      *   "firstName":"Ramazan",
      *   "lastName":"Karagoz"
@@ -33,7 +33,7 @@ public class UserController {
      * POST
      *http://localhost:9090/rest-service/login
      * {
-     *   "username":"40516901118",
+     *   "username":"85244056914",
      *   "password":"123123"
      * }
      *
@@ -86,4 +86,12 @@ public class UserController {
 
         return new ResponseEntity(Void.TYPE,HttpStatus.OK);
     }
+
+    @GetMapping("/findByFirstName/{firstName}")
+    public void findByFirstName(@PathVariable(value = "firstName") String firstName){
+        System.out.println(userService.getFirstName(firstName));
+
+        System.out.println(userService.getByFirstName(firstName));
+    }
+
 }

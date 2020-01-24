@@ -20,7 +20,7 @@ INSERT INTO message_source (locale, message_key,message_description,created_by) 
 ;
 
 INSERT INTO usr_user ( username, password,  first_name,  last_name,  enabled,  token_expired,created_by,version) VALUES
-(40516901118,'$2a$10$mUf92VpprgXHg5Ddyi/EBu5ddC7iAh02w.K0brkIDhVRb05IjRTkq','Ramazan','Karagöz',true ,true ,'admin',0 );
+(85244056914,'$2a$10$mUf92VpprgXHg5Ddyi/EBu5ddC7iAh02w.K0brkIDhVRb05IjRTkq','Ramazan','Karagöz',true ,true ,'admin',0 );
 INSERT INTO role (role_name,created_by,version) VALUES ('ROLE_ADMIN','admin',0),('ROLE_USER','admin',0);
 INSERT INTO privilege (privilege_name,created_by,version) VALUES ('READ_PRIVILEGE','admin',0),('WRITE_PRIVILEGE','admin',0);
 INSERT INTO privileges_roles(role_id,privilege_id) VALUES (1,2),(2,1);

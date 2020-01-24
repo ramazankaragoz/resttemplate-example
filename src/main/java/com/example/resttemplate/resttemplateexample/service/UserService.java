@@ -1,6 +1,7 @@
 package com.example.resttemplate.resttemplateexample.service;
 
 import com.example.resttemplate.resttemplateexample.dao.UserDAO;
+import com.example.resttemplate.resttemplateexample.dao.UserFirstNameView;
 import com.example.resttemplate.resttemplateexample.entity.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -64,5 +65,18 @@ public class UserService implements IUserService{
 
     public void proxyProcess(){
         iUserServiceProxy.process();
+    }
+
+    @Override
+    public String getFirstName(String firstName) {
+
+        UserFirstNameView userFirstNameView=userDAO.getByFirstName(firstName,UserFirstNameView.class);
+
+       return userFirstNameView.getFirstName();
+    }
+
+    @Override
+    public ApplicationUser getByFirstName(String firstName) {
+        return userDAO.getByFirstName(firstName,ApplicationUser.class);
     }
 }
